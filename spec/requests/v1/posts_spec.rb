@@ -1,39 +1,18 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "V1::Posts", type: :request do
-  describe "GET /index" do
-    it "returns http success" do
-      get "/v1/posts/index"
-      expect(response).to have_http_status(:success)
-    end
+  describe "GET #index" do
   end
 
-  describe "GET /show" do
-    it "returns http success" do
-      get "/v1/posts/show"
-      expect(response).to have_http_status(:success)
-    end
+  describe "GET #show" do
   end
 
-  describe "GET /create" do
-    it "returns http success" do
-      get "/v1/posts/create"
-      expect(response).to have_http_status(:success)
-    end
+  describe "POST #create" do
   end
 
-  describe "GET /update" do
-    it "returns http success" do
-      get "/v1/posts/update"
-      expect(response).to have_http_status(:success)
-    end
+  describe "PATCH #update" do
   end
 
-  describe "GET /destroy" do
-    it "returns http success" do
-      get "/v1/posts/destroy"
-      expect(response).to have_http_status(:success)
-    end
+  describe "DELETE #destroy" do
   end
-
 end

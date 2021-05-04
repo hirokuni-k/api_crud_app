@@ -55,4 +55,34 @@ RSpec.describe "V1::Posts", type: :request do
       end
     end
   end
+  describe "PATCH #update" do
+    # ***** 以下を追加 *****
+    subject { patch(v1_post_path(post_id), params: post_params) }
+    let(:post) { create(:post) }
+    let(:post_id) { post.id }
+
+    context "パラメータが正常なとき" do
+      let(:post_params) { { post: attributes_for(:post) } }
+
+      it "投稿が更新されること" do
+        new_post = post_params[:post]
+        expect { subject }.to change { post.reload.title }
+                                .from(post.title).to(new_post[:title]).and change { post.reload.content }
+                                  .from(post.content).to(new_post[:content])
+        expect(response).to have_http_status(:ok)
+      end
+    end
+  end
+  describe "DELETE #destroy" do
+    # ***** 以下を追加 *****
+    subject { delete(v1_post_path(post.id)) }
+    let!(:post) { create(:post) }
+
+    context "投稿が存在する時" do
+      it "投稿が削除されること" do
+        expect { subject }.to change { Post.count }.by(-1)
+        expect(response).to have_http_status(:no_content)
+      end
+    end
+  end
 end
